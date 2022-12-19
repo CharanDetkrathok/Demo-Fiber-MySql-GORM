@@ -1,4 +1,4 @@
-package personhandle
+package personhandler
 
 import (
 	"demo-fiber-mysql-gorm/model/request"
@@ -8,9 +8,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (handle *personHandle) UpdatePerson_GORM(c *fiber.Ctx) error {
+func (handle *personHandler) UpdatePerson_GORM(c *fiber.Ctx) error {
 
-	newPerson := new(request.Person)
+	newPerson := new(request.Person) // แบบที่ 1
+	// var newPerson *request.Person // แบบที่ 2
 	if err := c.BodyParser(&newPerson); err != nil {
 		res := response.Response{
 			Code:         "-GORM001",

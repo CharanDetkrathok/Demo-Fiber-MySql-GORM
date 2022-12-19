@@ -1,4 +1,4 @@
-package personhandle
+package personhandler
 
 import (
 	"demo-fiber-mysql-gorm/model/request"
@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (handle *personHandle) InsertPerson_GORM(c *fiber.Ctx) error {
+func (handle *personHandler) InsertPerson_GORM(c *fiber.Ctx) error {
 
 	newPerson := new(request.Person)
 	if err := c.BodyParser(&newPerson); err != nil {

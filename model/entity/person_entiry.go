@@ -8,6 +8,6 @@ type Person struct {
 	City      string `gorm:"column:City"`
 }
 
-func (*Person) TableName() string {
+func (m *Person) TableName() string {
 	return "Persons"
 }

@@ -1,18 +1,21 @@
 package server
 
 import (
-	"demo-fiber-mysql-gorm/domain"
+	"demo-fiber-mysql-gorm/api/domain"
+	"demo-fiber-mysql-gorm/api/handler/innovahandler"
+	"demo-fiber-mysql-gorm/api/handler/personhandler"
+	"demo-fiber-mysql-gorm/api/repository/innovarepo"
+	"demo-fiber-mysql-gorm/api/repository/personrepo"
+	"demo-fiber-mysql-gorm/api/service/innovaservice"
+	"demo-fiber-mysql-gorm/api/service/personservice"
 
 	"github.com/gofiber/fiber/v2"
-
-	personhandle "demo-fiber-mysql-gorm/handle/person"
-	personrepo "demo-fiber-mysql-gorm/repository/person"
-	personservice "demo-fiber-mysql-gorm/service/person"
 )
 
 type (
 	server struct {
-		PersonHandle domain.PersonHandle
+		PersonHandle  domain.PersonHandler
+		InnovaHandler domain.InnovaHandler
 	}
 
 	Server interface {
@@ -24,7 +27,14 @@ func NewServer() Server {
 
 	newPersonRepo := personrepo.NewPersonRepo()
 	newPersonService := personservice.NewPersonService(newPersonRepo)
-	newPersonHandle := personhandle.NewPersonHandle(newPersonService)
+	newPersonHandle := personhandler.NewPersonHandler(newPersonService)
 
-	return &server{newPersonHandle}
+	newInnovaRepo := innovarepo.NewInnovaRepo()
+	newInnovaService := innovaservice.NewInnovaService(newInnovaRepo)
+	newInnovaHandler := innovahandler.NewInnovaHandler(newInnovaService)
+
+	return &server{
+		newPersonHandle,
+		newInnovaHandler,
+	}
 }

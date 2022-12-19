@@ -9,4 +9,7 @@ func (server *server) RouterGroup(app *fiber.App) {
 	personGormGroup := app.Group("/person_gorm")
 	server.personGroup(personGormGroup)
 
+	innovaGormGroup := app.Group("/innova_gorm")
+	server.innovaGroup(innovaGormGroup)
+
 }

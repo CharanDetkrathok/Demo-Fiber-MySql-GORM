@@ -12,7 +12,7 @@ type Person struct {
 	City      string `json:"city"`
 }
 
-func (p *Person) Marshal() string {
-	personIndent, _ := json.MarshalIndent(p, "", "    ")
-	return string(personIndent)
+func (person *Person) Marshal() string {
+	marshalIndent, _ := json.MarshalIndent(person, "", "    ")
+	return string(marshalIndent)
 }

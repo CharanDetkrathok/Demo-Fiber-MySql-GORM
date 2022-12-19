@@ -1,4 +1,4 @@
-package personhandle
+package personhandler
 
 import (
 	"demo-fiber-mysql-gorm/model/response"
@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (handle *personHandle) GetPersonWithPersonID_GORM(c *fiber.Ctx) error {
+func (handle *personHandler) GetPersonWithPersonID_GORM(c *fiber.Ctx) error {
 
 	personId, _ := strconv.Atoi(c.Params("personId"))
 	result, err := handle.PersonService.GetPersonWithPersonID_GORM(personId)

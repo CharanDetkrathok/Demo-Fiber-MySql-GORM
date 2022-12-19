@@ -1,8 +1,6 @@
 package personservice
 
-import (
-	"demo-fiber-mysql-gorm/domain"
-)
+import "demo-fiber-mysql-gorm/api/domain"
 
 type personService struct {
 	PersonRepo domain.PersonRepo

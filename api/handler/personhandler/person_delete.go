@@ -1,4 +1,4 @@
-package personhandle
+package personhandler
 
 import (
 	"demo-fiber-mysql-gorm/model/response"
@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (handle *personHandle) DeletePerson_GORM(c *fiber.Ctx) error {
+func (handle *personHandler) DeletePerson_GORM(c *fiber.Ctx) error {
 
 	personId, _ := strconv.Atoi(c.Params("personId"))
 	if err := handle.PersonService.DeletePerson_GORM(personId); err != nil {
