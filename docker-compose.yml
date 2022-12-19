@@ -11,8 +11,6 @@ services:
       - demo-fiber-mysql-gorm
     ports:
       - 80:80
-    networks:
-      - demo-network
 
   demo-fiber-mysql-gorm:
     build: 
@@ -22,15 +20,14 @@ services:
     restart: always
     ports:
       - 3000:3000
-    networks:
-      - demo-network
 
 volumes:
   demo-fiber-gorm-datavolume:
 
 networks:
-  demo-network:
-    external: true
+  default:
+    external: 
+      name: demo-network
 
 
 

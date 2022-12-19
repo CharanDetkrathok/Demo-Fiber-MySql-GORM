@@ -1,12 +1,13 @@
 package personrepo
 
 import (
+	"demo-fiber-mysql-gorm/database"
 	"demo-fiber-mysql-gorm/model/entity"
 )
 
 func (repo *personRepo) DeletePerson_GORM(personID int) error {
 
-	result := repo.gorm_db.Where("PersonID = ?", personID).Delete(&entity.Person{})
+	result := database.Connection.Where("PersonID = ?", personID).Delete(&entity.Person{})
 	if result.Error != nil {
 		return result.Error
 	}

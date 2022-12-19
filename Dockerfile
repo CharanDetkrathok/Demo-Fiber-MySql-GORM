@@ -5,6 +5,6 @@ COPY go.sum ./
 RUN go mod download
 COPY . ./
 RUN go build -o main .
-COPY config/config.env /config/
+COPY config/config.json /config/
 EXPOSE 3000
 CMD [ "./main" ]

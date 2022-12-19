@@ -3,9 +3,7 @@ package server
 import (
 	"demo-fiber-mysql-gorm/domain"
 
-	"github.com/go-redis/redis/v9"
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
 
 	personhandle "demo-fiber-mysql-gorm/handle/person"
 	personrepo "demo-fiber-mysql-gorm/repository/person"
@@ -18,15 +16,14 @@ type (
 	}
 
 	Server interface {
-		Router(app *fiber.App)
-		personGroup(app *fiber.App)
+		RouterGroup(app *fiber.App)
 	}
 )
 
-func NewServer(gorm_db *gorm.DB, redis *redis.Client) Server {
+func NewServer() Server {
 
-	newPersonRepo := personrepo.NewPersonRepo(gorm_db)
-	newPersonService := personservice.NewPersonService(redis, newPersonRepo)
+	newPersonRepo := personrepo.NewPersonRepo()
+	newPersonService := personservice.NewPersonService(newPersonRepo)
 	newPersonHandle := personhandle.NewPersonHandle(newPersonService)
 
 	return &server{newPersonHandle}

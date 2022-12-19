@@ -4,8 +4,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (server *server) Router(app *fiber.App) {
-	
-	server.personGroup(app)
-	
+func (server *server) RouterGroup(app *fiber.App) {
+
+	personGormGroup := app.Group("/person_gorm")
+	server.personGroup(personGormGroup)
+
 }
