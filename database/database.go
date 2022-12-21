@@ -21,7 +21,10 @@ func InitDatabase() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=True&loc=Local", config.Env.MYSQL_USERNAME, config.Env.MYSQL_PASSWORD, config.Env.MYSQL_HOSTNAME, config.Env.MYSQL_DB_NAME)
 	db, err := gorm.Open(
 		mysql.Open(dsn),
-		&gorm.Config{Logger: &SqlLogger{}},
+		&gorm.Config{
+			Logger: &SqlLogger{},
+			// DryRun: true,
+		},
 	)
 	if err != nil {
 		panic(err)
@@ -32,5 +35,5 @@ func InitDatabase() {
 
 func (sqlLog *SqlLogger) Trace(ctx context.Context, begin time.Time, fc func() (sql string, rowsAffected int64), err error) {
 	sqlStatement, _ := fc()
-	fmt.Printf("\n => SQL Statement :: %v \n\n", sqlStatement)
+	fmt.Printf("\n => SQL Statement :: %v \n", sqlStatement)
 }
